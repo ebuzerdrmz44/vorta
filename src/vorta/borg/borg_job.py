@@ -340,7 +340,8 @@ class BorgJob(JobInterface):
         log_entry.end_time = dt.now()
         with db_lock:
             log_entry.save()
-            self.process_result(result)
+
+        self.process_result(result)
 
         self.finished_event(result)
         for tmpfile in self.cleanup_files:
